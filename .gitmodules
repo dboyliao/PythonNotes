@@ -4,3 +4,9 @@
 [submodule "Metaprogramming_With_Examples"]
 	path = Metaprogramming_With_Examples
 	url = https://github.com/dboyliao/Metaprogramming_With_Examples.git
+[submodule "SOLID"]
+	path = SOLID
+	url = https://github.com/dboyliao/SOLID.git
+[submodule "Learn_Flask"]
+	path = Learn_Flask
+	url = https://github.com/dboyliao/Learn_Flask.git
