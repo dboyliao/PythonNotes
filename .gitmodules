@@ -1,0 +1,6 @@
+[submodule "Learn_Matplotlib"]
+	path = Learn_Matplotlib
+	url = https://github.com/dboyliao/Learn_Matplotlib.git
+[submodule "Metaprogramming_With_Examples"]
+	path = Metaprogramming_With_Examples
+	url = https://github.com/dboyliao/Metaprogramming_With_Examples.git
