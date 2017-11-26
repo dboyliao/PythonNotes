@@ -6,7 +6,7 @@ import logging
 import threading
 
 logging.basicConfig(level=logging.DEBUG,
-                    format="[%(threadName)-9s] %(message)s")
+                    format="[%(threadName)-10s] %(message)s")
 
 TASK_CAPACITY = 5
 TOTAL_TASKS = 10
@@ -20,6 +20,7 @@ def producer(cv):
             if len(tasks) < 5:
                 logging.debug("insert number")
                 tasks.append(3)
+                logging.debug("current num tasks: {}".format(len(tasks)))
                 cv.notify()
                 break
             else:
@@ -27,7 +28,8 @@ def producer(cv):
                 # cv.wait will release the lock and enter a wait queue.
                 # the procuder will be blocked at here and continue util
                 # someone else called cv.notify
-                cv.wait()
+                gotit = cv.wait()
+            logging.debug("gotit? {}".format(gotit))
         # cv released
     logging.debug("producer exit")
 
@@ -38,13 +40,14 @@ def consumer(cv):
     while count < TOTAL_TASKS:
         with cv:
             if tasks:
-                logging.debug("consume task: {}".format(count))
                 tasks.pop(0)
                 count += 1
+                logging.debug("consumed task: {}".format(count))
                 cv.notify()
             else:
                 logging.debug("waiting")
-                cv.wait()
+                gotit = cv.wait()
+        logging.debug("gotit? {}".format(gotit))
     logging.debug("consumer exit")
 
 
