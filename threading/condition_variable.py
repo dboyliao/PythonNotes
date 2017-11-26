@@ -14,8 +14,9 @@ tasks = []
 
 def producer(cv):
     logging.debug("producer thread start")
-    with cv:
-        while True:
+    while True:
+        # with statement will acquire the cv
+        with cv:
             if len(tasks) < 5:
                 logging.debug("insert number")
                 tasks.append(3)
@@ -23,7 +24,11 @@ def producer(cv):
                 break
             else:
                 logging.debug("waiting")
+                # cv.wait will release the lock and enter a wait queue.
+                # the procuder will be blocked at here and continue util
+                # someone else called cv.notify
                 cv.wait()
+        # cv released
     logging.debug("producer exit")
 
 
