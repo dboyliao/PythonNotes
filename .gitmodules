@@ -10,3 +10,6 @@
 [submodule "Learn_Flask"]
 	path = Learn_Flask
 	url = https://github.com/dboyliao/Learn_Flask.git
+[submodule "numpy_capi"]
+	path = numpy_capi
+	url = https://github.com/dboyliao/numpy_capi.git
